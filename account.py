@@ -27,6 +27,10 @@ with open("sale_manager_db.json") as file:
     except json.decoder.JSONDecodeError:
         sale_manager_db = {}
 
+def display(db):
+    for user in db:
+        print(user)
+
 # проверка данных
 def validate_password(account_db, account_type, login, password):
     if account_db.get(login):
@@ -88,6 +92,7 @@ def register_account(account_type, login, password, password_confirm):
 
 # регистрация/авторизация
 def main():
+    display(director_db)
     account_type = input("Введите тип аккаунта\n (маркетинг, директор, менеджер, работник, менеджер продаж):\n").lower().replace(" ", '')
     enter = input("Вход или регистрация? (в/р): ").lower().strip()
     login = input("Введите логин: ")
@@ -97,4 +102,5 @@ def main():
     elif enter == 'р':
         password_confirm = input("Повторите пароль: ")
         register_account(account_type, login, password, password_confirm)
+    main()
 
